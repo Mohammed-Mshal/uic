@@ -12,10 +12,21 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@images': fileURLToPath(new URL('./src/assets/images', import.meta.url))
     },
+  },
+  base: '/',
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "@/assets/scss/variables" as *;
+        `
+      }
+    }
   },
   server: {
     port: 4000
-  }
+  },
 })
